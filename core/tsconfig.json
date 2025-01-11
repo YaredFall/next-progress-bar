@@ -13,9 +13,8 @@
         "checkJs": true,
 
         "lib": ["dom", "dom.iterable", "es2019"],
-        "noEmit": true,
-        "module": "ESNext",
-        "moduleResolution": "Bundler",
+        "module": "node16",
+        "moduleResolution": "node16",
         "jsx": "preserve",
         "plugins": [{ "name": "next" }],
         "incremental": true,
@@ -29,5 +28,5 @@
         }
     },
     "include": ["src"],
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules"]
 }
