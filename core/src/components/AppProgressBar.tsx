@@ -38,3 +38,4 @@ export const AppProgressBar = forwardRef<ComponentRef<"div">, Omit<ComponentProp
         );
     }
 );
+AppProgressBar.displayName = "AppProgressBar";

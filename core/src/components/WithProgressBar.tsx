@@ -21,36 +21,35 @@ export default function WithProgressBar({ children, interval, step, ...props }: 
 
     const progressBar = useRef<HTMLDivElement>(null);
 
-    const progress = useMemo(
-        () =>
-            createProgress({
-                minimum: 0,
-                maximum: 100,
-                interval: interval ?? 50,
-                step: step ?? ((value) => (value < 99 ? Math.random() * (value < 80 ? 2 : 1) : 0)),
-                onStart: () => {
-                    progressBar.current?.style.setProperty("opacity", "1");
-                },
-                onStop: () => {
-                    progressBar.current?.style.setProperty("opacity", "0");
-                },
-                onChange: (value) => {
-                    progressBar.current?.style.setProperty("width", value + "%");
-                },
-            }),
-        []
+    const progress = useRef(
+        createProgress({
+            minimum: 0,
+            maximum: 100,
+            interval: interval ?? 50,
+            step: step ?? ((value) => (value < 99 ? Math.random() * (value < 80 ? 2 : 1) : 0)),
+            onStart: () => {
+                progressBar.current?.style.setProperty("opacity", "1");
+            },
+            onStop: () => {
+                progressBar.current?.style.setProperty("opacity", "0");
+            },
+            onChange: (value) => {
+                progressBar.current?.style.setProperty("width", value + "%");
+            },
+        })
     );
+
     const onTransitionEnd = useCallback(() => {
-        if (!progress.isActive) {
+        if (!progress.current.isActive) {
             // Reset progress to prevent bar animating from full width
-            progress.set(0);
+            progress.current.set(0);
         }
-    }, []);
+    }, [progress]);
 
     const onRouteChange = useCallback(
         (target?: string) => {
-            if (target && target === path) progress.stop();
-            else progress.start();
+            if (target && target === path) progress.current.stop();
+            else progress.current.start();
         },
         [path]
     );
@@ -67,11 +66,11 @@ export default function WithProgressBar({ children, interval, step, ...props }: 
 
     // * Called on router navigation end
     useEffect(() => {
-        if (progress.isActive) progress.stop();
+        if (progress.current.isActive) progress.current.stop();
     }, [path]);
 
     const onPopState = useCallback(() => {
-        progress.start();
+        progress.current.start();
     }, []);
     useInterceptPopState(onPopState);
 
