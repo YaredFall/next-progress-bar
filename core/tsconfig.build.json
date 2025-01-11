@@ -17,13 +17,14 @@
         "moduleResolution": "node16",
         "jsx": "preserve",
         "plugins": [{ "name": "next" }],
-        "incremental": true,
 
-        "noEmit": true,
         "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist",
+        "declaration": true,
+        "declarationMap": true,
         "paths": {
             "@/*": ["./src/*"]
         }
     },
-    "exclude": ["node_modules", "dist"]
+    "include": ["src"]
 }
