@@ -18,7 +18,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "rm -rf dist && tsc -p tsconfig.build.json",
-        "prepack": "eslint . --fix && pnpm build && bumpp"
+        "release": "eslint . --fix && pnpm build && bumpp && pnpm publish"
     },
     "keywords": [],
     "author": "",
