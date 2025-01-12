@@ -1,4 +1,7 @@
 {
+    "publishConfig": {
+        "access": "public"
+    },
     "name": "next-progress-bar",
     "version": "0.0.0",
     "description": "",
@@ -14,7 +17,8 @@
     ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "rm -rf dist && tsc -p tsconfig.build.json"
+        "build": "rm -rf dist && tsc -p tsconfig.build.json",
+        "prepack": "eslint . --fix && pnpm build && bumpp"
     },
     "keywords": [],
     "author": "",
