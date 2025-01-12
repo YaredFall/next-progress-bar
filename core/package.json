@@ -2,7 +2,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "name": "next-progress-bar",
+    "name": "@yaredfall/next-progress-bar",
     "version": "0.0.1",
     "description": "",
     "main": "./dist/index.js",
