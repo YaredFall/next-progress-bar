@@ -1,7 +1,7 @@
 "use client";
 
-import { useInterceptPopState } from "@/hooks/useInterceptPopState";
-import { createProgress, ProgressOptions } from "@/utils/progress";
+import { useInterceptPopState } from "../hooks/useInterceptPopState";
+import { createProgress, ProgressOptions } from "../utils/progress";
 import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { usePathname, useSearchParams } from "next/navigation";
 import { ComponentPropsWithoutRef, PropsWithChildren, useCallback, useEffect, useMemo, useRef } from "react";
