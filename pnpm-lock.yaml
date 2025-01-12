@@ -7,14 +7,13 @@ settings:
 importers:
 
   core:
-    dependencies:
-      '@types/eslint__eslintrc':
-        specifier: ^2.1.2
-        version: 2.1.2
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.2.0
+      '@types/eslint__eslintrc':
+        specifier: ^2
+        version: 2.1.2
       '@types/react':
         specifier: '>=18'
         version: 19.0.4
