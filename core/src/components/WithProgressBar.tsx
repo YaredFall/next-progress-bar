@@ -10,7 +10,7 @@ import { AppProgressBar } from "./AppProgressBar";
 
 interface WithProgressBarProps
     extends PropsWithChildren,
-        Pick<ProgressOptions, "interval" | "step">,
+        Partial<Pick<ProgressOptions, "interval" | "step">>,
         Pick<ComponentPropsWithoutRef<typeof AppProgressBar>, "className" | "style"> {}
 
 export default function WithProgressBar({ children, interval, step, ...props }: WithProgressBarProps) {
