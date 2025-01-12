@@ -27,6 +27,7 @@
         "@eslint/eslintrc": "^3",
         "@types/eslint__eslintrc": "^2",
         "@types/react": ">=18",
+        "bumpp": "^9.10.0",
         "eslint": "^9",
         "next": ">=14",
         "react": ">=18",
