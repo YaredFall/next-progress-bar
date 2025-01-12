@@ -35,12 +35,12 @@ importers:
 
   example:
     dependencies:
+      '@yaredfall/next-progress-bar':
+        specifier: workspace:*
+        version: link:../core
       next:
         specifier: 15.1.4
         version: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
-      next-progress-bar:
-        specifier: workspace:*
-        version: link:../core
       react:
         specifier: ^19.0.0
         version: 19.0.0
