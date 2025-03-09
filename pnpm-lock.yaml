@@ -9,8 +9,8 @@ importers:
   core:
     dependencies:
       '@yaredfall/next-navigation-interception':
-        specifier: ^0.0.6
-        version: 0.0.6(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+        specifier: ^0.0.7
+        version: 0.0.7(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
@@ -40,8 +40,8 @@ importers:
   example:
     dependencies:
       '@yaredfall/next-navigation-interception':
-        specifier: ^0.0.6
-        version: 0.0.6(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+        specifier: ^0.0.7
+        version: 0.0.7(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       '@yaredfall/next-progress-bar':
         specifier: workspace:*
         version: link:../core
@@ -432,8 +432,8 @@ packages:
     resolution: {integrity: sha512-fzmjU8CHK853V/avYZAvuVut3ZTfwN5YtMaoi+X9Y9MA9keaWNHC3zEQ9zvyX/7Hj+5JkNyK1l7TOR2hevHB6Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@yaredfall/next-navigation-interception@0.0.6':
-    resolution: {integrity: sha512-0jO8fOv85YbCJAycTY7q13QDNJuv0P3q5JJOxGOIlCI81jy4Z5v0IElTgAt4TQr5u2FrhPiYvablmalnORAf4w==}
+  '@yaredfall/next-navigation-interception@0.0.7':
+    resolution: {integrity: sha512-wp16giIRFn7b6X0+ijZx8/l3E4FvnRvpAR/3pm5oScZ7RBI7JIrOnNX+Y2oBOdypZwa1DCjYv3AeHnW44rLaRg==}
     peerDependencies:
       next: '>=14'
       react: '>=18'
@@ -2235,7 +2235,7 @@ snapshots:
       '@typescript-eslint/types': 8.19.1
       eslint-visitor-keys: 4.2.0
 
-  '@yaredfall/next-navigation-interception@0.0.6(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
+  '@yaredfall/next-navigation-interception@0.0.7(next@15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
     dependencies:
       next: 15.1.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0

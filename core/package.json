@@ -24,7 +24,7 @@
     "author": "",
     "license": "ISC",
     "peerDependencies": {
-        "@yaredfall/next-navigation-interception": "^0.0.6",
+        "@yaredfall/next-navigation-interception": "^0.0.7",
         "next": ">=14",
         "react": ">=18"
     },
