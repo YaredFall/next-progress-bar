@@ -13,7 +13,7 @@
         "react-dom": "^19.0.0",
         "next": "15.1.4",
         "@yaredfall/next-progress-bar": "workspace:*",
-        "@yaredfall/next-navigation-interception": "^0.0.5"
+        "@yaredfall/next-navigation-interception": "^0.0.6"
     },
     "devDependencies": {
         "typescript": "^5",
