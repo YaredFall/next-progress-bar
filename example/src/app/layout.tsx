@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
 import "./globals.css";
+
+import type { Metadata } from "next";
 import { WithProgressBar } from "next-progress-bar";
 import Link from "next/link";
+import { NavigationInterceptionProvider } from "@yaredfall/next-navigation-interception";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -17,14 +19,16 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <WithProgressBar>
-                    <div className="flex gap-4">
-                        {["page1", "page2"].map((l) => (
-                            <Link key={l} href={"/" + l}>
-                                to {l}
-                            </Link>
-                        ))}
-                    </div>
-                    {children}
+                    <NavigationInterceptionProvider>
+                        <div className="flex gap-4">
+                            {["page1", "page2", "guarded"].map((l) => (
+                                <Link key={l} href={"/" + l}>
+                                    to {l}
+                                </Link>
+                            ))}
+                        </div>
+                        {children}
+                    </NavigationInterceptionProvider>
                 </WithProgressBar>
             </body>
         </html>

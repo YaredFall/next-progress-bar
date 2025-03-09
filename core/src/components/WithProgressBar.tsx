@@ -1,11 +1,13 @@
 "use client";
 
-import { useInterceptPopState } from "../hooks/useInterceptPopState";
-import { createProgress, ProgressOptions } from "../utils/progress";
-import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { usePathname, useSearchParams } from "next/navigation";
-import { ComponentPropsWithoutRef, PropsWithChildren, useCallback, useEffect, useMemo, useRef } from "react";
-import { RouterInterceptors, useInterceptedAppRouter } from "../hooks/useInterceptedRoouter";
+import { ComponentPropsWithoutRef, PropsWithChildren, useCallback, useEffect, useRef } from "react";
+import {
+    NavigationInterceptionProvider,
+    NavigationInterceptors,
+    useNavigationInterceptors,
+} from "@yaredfall/next-navigation-interception";
+import { ProgressOptions, createProgress } from "../utils/progress";
 import { AppProgressBar } from "./AppProgressBar";
 
 interface WithProgressBarProps
@@ -13,7 +15,7 @@ interface WithProgressBarProps
         Partial<Pick<ProgressOptions, "interval" | "step">>,
         Pick<ComponentPropsWithoutRef<typeof AppProgressBar>, "className" | "style"> {}
 
-export default function WithProgressBar({ children, interval, step, ...props }: WithProgressBarProps) {
+function PrivateWithProgressBar({ children, interval, step, ...props }: WithProgressBarProps) {
     const pathname = usePathname();
     const query = useSearchParams();
 
@@ -45,39 +47,45 @@ export default function WithProgressBar({ children, interval, step, ...props }: 
             progress.current.set(0);
         }
     }, [progress]);
-
+    type NavigationInterceptor = Exclude<Exclude<NavigationInterceptors, undefined>[keyof NavigationInterceptors], undefined>;
     const onRouteChange = useCallback(
-        (target?: string) => {
+        ({ args }: Parameters<NavigationInterceptor>[0]) => {
+            const [target] = args;
             if (target && target === path) progress.current.stop();
             else progress.current.start();
         },
         [path]
     );
-    const routerIntercepters = useMemo<RouterInterceptors>(
-        () => ({
-            onBack: onRouteChange,
-            onForward: onRouteChange,
-            onPush: onRouteChange,
-            onReplace: onRouteChange,
-        }),
-        [onRouteChange]
-    );
-    const router = useInterceptedAppRouter(routerIntercepters);
+    const onPopState = useCallback(() => {
+        progress.current.start();
+    }, []);
+
+    useNavigationInterceptors({
+        onBack: onRouteChange,
+        onForward: onRouteChange,
+        onPush: onRouteChange,
+        onReplace: onRouteChange,
+        onRefresh: onRouteChange,
+        onPopstate: onPopState,
+    });
 
     // * Called on router navigation end
     useEffect(() => {
         if (progress.current.isActive) progress.current.stop();
     }, [path]);
 
-    const onPopState = useCallback(() => {
-        progress.current.start();
-    }, []);
-    useInterceptPopState(onPopState);
-
     return (
-        <AppRouterContext.Provider value={router}>
+        <>
             {children}
             <AppProgressBar ref={progressBar} onTransitionEnd={onTransitionEnd} {...props} />
-        </AppRouterContext.Provider>
+        </>
+    );
+}
+
+export default function WithProgressBar(props: WithProgressBarProps) {
+    return (
+        <NavigationInterceptionProvider>
+            <PrivateWithProgressBar {...props} />
+        </NavigationInterceptionProvider>
     );
 }

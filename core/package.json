@@ -23,6 +23,9 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "dependencies": {
+        "@yaredfall/next-navigation-interception": "^0.0.5"
+    },
     "peerDependencies": {
         "next": ">=14",
         "react": ">=18"
