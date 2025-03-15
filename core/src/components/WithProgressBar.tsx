@@ -19,7 +19,8 @@ function PrivateWithProgressBar({ children, interval, step, ...props }: WithProg
     const pathname = usePathname();
     const query = useSearchParams();
 
-    const path = pathname + query.toString();
+    const search = query.toString();
+    const path = pathname + (search ? `?${search}` : '');
 
     const progressBar = useRef<HTMLDivElement>(null);
 
